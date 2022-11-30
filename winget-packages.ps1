@@ -7,12 +7,19 @@ function ipkg {
     winget install $package --accept-source-agreements --accept-package-agreements
 }
 
+function ipkg-user {
+    param (
+        $package
+    )
+    runas /trustlevel:0x20000 ("cmd /C winget install " + $package + "--accept-source-agreements --accept-package-agreements")
+}
+
 ipkg Hibbiki.Chromium
 ipkg 7Zip.7Zip
 ipkg Notepad++.Notepad++
 ipkg Microsoft.VisualStudioCode
 ipkg VideoLAN.VLC
-ipkg Spotify.Spotify
+ipkg-user Spotify.Spotify
 ipkg Discord.Discord
 ipkg Valve.Steam
 ipkg Python.Python.3.10
