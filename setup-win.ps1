@@ -28,10 +28,10 @@ Invoke-WebRequest -Uri "https://github.com/microsoft/winget-cli/releases/downloa
 Expand-Archive ".\XamlLib.zip" -DestinationPath ".\XamlUnzipped"
 
 Write-Host "Installing VC++14...";
-Add-AppxPackage -Path ".\VCLibs.appx"
+Add-AppxPackage -Path ".\VCLibs.appx"  -ErrorAction SilentlyContinue
 
 Write-Host "Installing Microsoft XAML UI 2.7...";
-Add-AppxPackage -Path ".\XamlUnzipped\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx"
+Add-AppxPackage -Path ".\XamlUnzipped\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx" -ErrorAction SilentlyContinue
 
 Write-Host "Installing Winget...";
 Add-AppxProvisionedPackage -Online -PackagePath ".\winget.msixbundle" -LicensePath ".\License.xml"
