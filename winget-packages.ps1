@@ -24,4 +24,5 @@ ipkg Microsoft.PowerToys
 ipkg TechPowerUp.NVCleanstall
 ipkg Nvidia.RTXVoice
 ipkg Oracle.VirtualBox
+ipkg 9NZKPSTSNW4P
 ipkg Microsoft.VisualStudio.2022.Community
