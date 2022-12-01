@@ -12,3 +12,10 @@ powershell -c "Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Objec
 dism /Get-WimInfo /WimFile:D:\Sources\install.wim
 dism /Apply-Image /ImageFile:D:\Sources\install.wim /index:1 /ApplyDir:G:\
 ```
+
+# diskpart
+```
+create partition efi size=500
+format quick fs=fat32
+assign letter=y
+```
