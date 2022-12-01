@@ -22,8 +22,7 @@ Write-Host "Downloading Microsoft XAML UI 2.7...";
 Invoke-WebRequest -Uri "https://www.nuget.org/api/v2/package/Microsoft.UI.Xaml/2.7" -OutFile XamlLib.zip
 
 Write-Host "Downloading Winget...";
-Invoke-WebRequest -Uri "https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -OutFile winget.msixbundle
-Invoke-WebRequest -Uri "https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/7bcb1a0ab33340daa57fa5b81faec616_License1.xml" -OutFile License.xml
+Invoke-WebRequest -Uri "https://aka.ms/getwinget" -OutFile winget.msixbundle
 
 Expand-Archive ".\XamlLib.zip" -DestinationPath ".\XamlUnzipped"
 
@@ -34,7 +33,7 @@ Write-Host "Installing Microsoft XAML UI 2.7...";
 Add-AppxPackage -Path ".\XamlUnzipped\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx" -ErrorAction SilentlyContinue
 
 Write-Host "Installing Winget...";
-Add-AppxProvisionedPackage -Online -PackagePath ".\winget.msixbundle" -LicensePath ".\License.xml"
+Add-AppxProvisionedPackage -Online -PackagePath ".\winget.msixbundle" -SkipLicense
 
 cd ..
 
