@@ -4,7 +4,7 @@ function ipkg {
     param (
         $package
     )
-    winget install $package --accept-source-agreements --accept-package-agreements --slient
+    winget install $package --accept-source-agreements --accept-package-agreements --silent
 }
 
 function ipkg-user {
