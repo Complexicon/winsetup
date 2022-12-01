@@ -4,14 +4,14 @@ function ipkg {
     param (
         $package
     )
-    winget install $package --accept-source-agreements --accept-package-agreements
+    winget install $package --accept-source-agreements --accept-package-agreements --slient
 }
 
 function ipkg-user {
     param (
         $package
     )
-    runas /trustlevel:0x20000 ("cmd /C winget install " + $package + "--accept-source-agreements --accept-package-agreements")
+    runas /trustlevel:0x20000 ("cmd /C winget install " + $package + " --accept-source-agreements --accept-package-agreements --silent")
 }
 
 ipkg Hibbiki.Chromium
@@ -33,3 +33,4 @@ ipkg Nvidia.RTXVoice
 ipkg Oracle.VirtualBox
 ipkg 9NZKPSTSNW4P
 ipkg Microsoft.VisualStudio.2022.Community
+pause
