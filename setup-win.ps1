@@ -40,6 +40,6 @@ cd ..
 
 Remove-Item -Recurse -Force $SetupDir
 
-winget install Microsoft.WindowsTerminal
+winget install Microsoft.WindowsTerminal --accept-source-agreements
 
 wt new-tab powershell.exe -Command "Set-ExecutionPolicy Bypass -Scope Process -Force\;iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Complexicon/winsetup/main/winget-packages.ps1'))"
