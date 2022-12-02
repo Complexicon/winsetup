@@ -29,8 +29,8 @@ ipkg EclipseAdoptium.Temurin.8.JDK
 ipkg EclipseAdoptium.Temurin.17.JDK
 ipkg Microsoft.PowerToys
 ipkg TechPowerUp.NVCleanstall
-ipkg Nvidia.RTXVoice
+ipkg Nvidia.Broadcast
 ipkg Oracle.VirtualBox
 ipkg 9NZKPSTSNW4P
-ipkg Microsoft.VisualStudio.2022.Community
+ipkg "Microsoft.VisualStudio.2022.Community"
 pause
