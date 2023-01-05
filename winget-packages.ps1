@@ -27,6 +27,7 @@ ipkg OpenJS.NodeJS
 ipkg Git.Git
 ipkg EclipseAdoptium.Temurin.8.JDK
 ipkg EclipseAdoptium.Temurin.17.JDK
+ipkg GorillaDevs.GDLauncher
 ipkg Microsoft.PowerToys
 ipkg TechPowerUp.NVCleanstall
 ipkg Nvidia.Broadcast
