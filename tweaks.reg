@@ -1,0 +1,75 @@
+Windows Registry Editor Version 5.00
+
+; open on this pc
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+"LaunchTo"=dword:00000001
+
+; remove quick access
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer]
+"HubMode"=dword:00000001
+
+; remove 3d objects
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]
+
+; remove removable drives -> redundant. already shown in this pc
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders\{F5FB2C77-0E2F-4A16-A381-3E560C68BC83}]
+
+; enable hidden files and file extension
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+"Hidden"=dword:00000001
+"HideFileExt"=dword:00000000
+
+;
+; create nav pane user folder shortcut
+;
+[HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}]
+@="User Files"
+"InfoTip"="shell:::{59031a47-3f72-44a7-89c5-5595fe6b30ee}"
+"{305ca226-d286-468e-b848-2b2e8e697b74} 2"=dword:ffffffff
+"DescriptionID"=dword:00000003
+"System.IsPinnedtoNameSpaceTree"=dword:00000001
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}\DefaultIcon]
+@="C:\\Windows\\system32\\imageres.dll,-123"
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}\InProcServer32]
+@="shdocvw.dll"
+"ThreadingModel"="Both"
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}\Instance]
+"CLSID"="{0afaced1-e828-11d1-9187-b532f1e9575d}"
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}\Instance\InitPropertyBag]
+"Attributes"=dword:00000015
+"Target"=hex(2):73,00,68,00,65,00,6c,00,6c,00,3a,00,3a,00,3a,00,7b,00,35,00,39,\
+  00,30,00,33,00,31,00,61,00,34,00,37,00,2d,00,33,00,66,00,37,00,32,00,2d,00,\
+  34,00,34,00,61,00,37,00,2d,00,38,00,39,00,63,00,35,00,2d,00,35,00,35,00,39,\
+  00,35,00,66,00,65,00,36,00,62,00,33,00,30,00,65,00,65,00,7d,00,00,00
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}\ShellEx]
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}\ShellEx\PropertySheetHandlers]
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}\ShellEx\PropertySheetHandlers\tab 1 general]
+@="{21b22460-3aea-1069-a2dc-08002b30309d}"
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}\ShellEx\PropertySheetHandlers\tab 2 customize]
+@="{ef43ecfe-2ab9-4632-bf21-58909dd177f0}"
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}\ShellEx\PropertySheetHandlers\tab 3 sharing]
+@="{f81e9010-6ea4-11ce-a7ff-00aa003ca9f6}"
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}\ShellEx\PropertySheetHandlers\tab 4 security]
+@="{1f2e5c40-9550-11ce-99d2-00aa006e086c}"
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}\ShellFolder]
+"Attributes"=dword:f080004d
+"WantsFORPARSING"=""
+"HideAsDeletePerUser"=""
+
+
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}]
+
+;
+; end
+;
