@@ -28,6 +28,31 @@ Windows Registry Editor Version 5.00
 [-HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\Sharing]
 [-HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\{596AB062-B4D2-4215-9F74-E9109B0A8153}]
 
+; hide trash can on desktop
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel]
+"{645FF040-5081-101B-9F08-00AA002F954E}"=dword:00000001
+
+; confirm on delete
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies]
+"ConfirmFileDelete"=dword:00000001
+
+; add windows terminal to context
+[HKEY_CLASSES_ROOT\Directory\background\shell\wt]
+@="Open in Terminal"
+"Icon"="cmd.exe,0"
+
+[HKEY_CLASSES_ROOT\Directory\background\shell\wt\command]
+@="wt.exe -d \"%V\""
+
+[HKEY_CLASSES_ROOT\Directory\background\shell\wt-admin]
+@="Open in Terminal (Admin)"
+"Icon"="cmd.exe,0"
+"Extended"=""
+
+[HKEY_CLASSES_ROOT\Directory\background\shell\wt-admin\command]
+@="PowerShell -windowstyle hidden -Command \"Start-Process wt.exe -ArgumentList '-d \\\"%V\\\"' -Verb RunAs\""
+; end add windows terminal to context
+
 ; enable dark mode
 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize]
 "ColorPrevalence"=dword:00000000
