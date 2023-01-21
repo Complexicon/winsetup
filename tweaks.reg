@@ -28,6 +28,13 @@ Windows Registry Editor Version 5.00
 [-HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\Sharing]
 [-HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\{596AB062-B4D2-4215-9F74-E9109B0A8153}]
 
+; enable dark mode
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize]
+"ColorPrevalence"=dword:00000000
+"EnableTransparency"=dword:00000001
+"AppsUseLightTheme"=dword:00000000
+"SystemUsesLightTheme"=dword:00000000
+
 ; enable hidden files and file extension
 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
 "Hidden"=dword:00000001
