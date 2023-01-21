@@ -14,13 +14,27 @@ Windows Registry Editor Version 5.00
 ; remove removable drives -> redundant. already shown in this pc
 [-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders\{F5FB2C77-0E2F-4A16-A381-3E560C68BC83}]
 
+; remove open in visual studio 2022 -> vscode 4ever
+[-HKEY_CLASSES_ROOT\Directory\shell\AnyCode]
+[-HKEY_CLASSES_ROOT\Directory\background\shell\AnyCode]
+
+; remove git shell stuff
+[-HKEY_CLASSES_ROOT\Directory\shell\git_gui]
+[-HKEY_CLASSES_ROOT\Directory\shell\git_shell]
+[-HKEY_CLASSES_ROOT\Directory\background\shell\git_gui]
+[-HKEY_CLASSES_ROOT\Directory\background\shell\git_shell]
+
+; remove windows shit
+[-HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\Sharing]
+[-HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\{596AB062-B4D2-4215-9F74-E9109B0A8153}]
+
 ; enable hidden files and file extension
 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
 "Hidden"=dword:00000001
 "HideFileExt"=dword:00000000
 
 ;
-; create nav pane user folder shortcut
+; begin create nav pane user folder shortcut
 ;
 [HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{b1d1a93a-9c3d-48a9-b5ce-e6e6b50bec7c}]
 @="User Files"
