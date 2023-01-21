@@ -17,7 +17,11 @@ function ipkg-user {
 ipkg Hibbiki.Chromium
 ipkg 7Zip.7Zip
 ipkg Notepad++.Notepad++
-ipkg Microsoft.VisualStudioCode
+
+# you are like always a special fucking snowflake
+winget install Microsoft.VisualStudioCode --override --accept-source-agreements --accept-package-agreements '/SILENT /mergetasks="!runcode,addcontextmenufiles,addcontextmenufolders"'
+#ipkg Microsoft.VisualStudioCode
+
 ipkg VideoLAN.VLC
 ipkg-user Spotify.Spotify
 ipkg Discord.Discord
@@ -33,5 +37,8 @@ ipkg TechPowerUp.NVCleanstall
 ipkg Nvidia.Broadcast
 ipkg Oracle.VirtualBox
 ipkg 9NZKPSTSNW4P
-ipkg "Microsoft.VisualStudio.2022.Community"
+
+# and you are also a special snowflake.
+winget install Microsoft.VisualStudio.2022.Community
+
 pause
