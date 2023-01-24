@@ -19,7 +19,7 @@ ipkg 7Zip.7Zip
 ipkg Notepad++.Notepad++
 
 # you are like always a special fucking snowflake
-winget install Microsoft.VisualStudioCode --override --accept-source-agreements --accept-package-agreements '/SILENT /mergetasks="!runcode,addcontextmenufiles,addcontextmenufolders"'
+winget install Microsoft.VisualStudioCode --accept-source-agreements --accept-package-agreements --override '/SILENT /mergetasks="!runcode,addcontextmenufiles,addcontextmenufolders"'
 #ipkg Microsoft.VisualStudioCode
 
 ipkg VideoLAN.VLC
