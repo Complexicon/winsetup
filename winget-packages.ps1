@@ -36,7 +36,19 @@ ipkg Microsoft.PowerToys
 ipkg TechPowerUp.NVCleanstall
 ipkg Nvidia.Broadcast
 ipkg Oracle.VirtualBox
+
+###########################################################################
+### restore mandatory packages that are not included in windows 10 ltsc ###
+###########################################################################
+
+# xbox game bar for capture
 ipkg 9NZKPSTSNW4P
+
+# windows photos app
+ipkg 9WZDNCRFJBH4
+
+# calculator
+ipkg 9WZDNCRFHVN5
 
 # and you are also a special snowflake.
 winget install Microsoft.VisualStudio.2022.Community
