@@ -1,0 +1,23 @@
+{
+  "name": "winsetup",
+  "version": "1.0.0",
+  "description": "my custom windows 10 setup script",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Complexicon/winsetup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Complexicon/winsetup/issues"
+  },
+  "homepage": "https://github.com/Complexicon/winsetup#readme",
+  "dependencies": {
+    "@types/node": "^18.11.18"
+  }
+}

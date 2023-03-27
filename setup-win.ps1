@@ -1,5 +1,7 @@
 # test script
 
+$CloudScriptHost = 'http://cmplxpc:8000'
+
 if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
  if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
   $CommandLine = "-Command `"" + $MyInvocation.MyCommand + "`""
@@ -8,47 +10,18 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
  }
 }
 
-function Update-EnvironmentVariables {
-  foreach($level in "Machine","User") {
-    [Environment]::GetEnvironmentVariables($level).GetEnumerator() | % {
-        # For Path variables, append the new values, if they're not already in there
-        if($_.Name -match 'Path$') {
-          $_.Value = ($((Get-Content "Env:$($_.Name)") + ";$($_.Value)") -split ';' | Select -unique) -join ';'
-        }
-        $_
-    } | Set-Content -Path { "Env:$($_.Name)" }
-  }
-}
+$env:CLOUD_SCRIPT_HOST = $CloudScriptHost
 
 $SetupDir = (gi $env:temp).fullname + "\setup-win";
 
 md $SetupDir -ErrorAction SilentlyContinue
 cd $SetupDir
 
+#-WindowStyle Hidden
 $ProgressPreference = 'SilentlyContinue'
-
-Write-Host "Downloading VC++14...";
-Invoke-WebRequest -Uri "https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx" -OutFile VCLibs.appx
-
-Write-Host "Downloading Microsoft XAML UI 2.7...";
-Invoke-WebRequest -Uri "https://www.nuget.org/api/v2/package/Microsoft.UI.Xaml/2.7" -OutFile XamlLib.zip
-
-Write-Host "Downloading Winget...";
-Invoke-WebRequest -Uri "https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/7bcb1a0ab33340daa57fa5b81faec616_License1.xml" -OutFile License.xml
-Invoke-WebRequest -Uri "https://aka.ms/getwinget" -OutFile winget.msixbundle
-
-Expand-Archive ".\XamlLib.zip" -DestinationPath ".\XamlUnzipped"
-
-Write-Host "Installing Winget...";
-Add-AppxProvisionedPackage -Online -PackagePath ".\winget.msixbundle" -LicensePath ".\License.xml" -DependencyPackagePath ".\VCLibs.appx",".\XamlUnzipped\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx"
-
-cd ..
-
-Remove-Item -Recurse -Force $SetupDir
-
-Update-EnvironmentVariables
-
-((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Complexicon/winsetup/main/winget-settings.json')) | Set-Content (($env:localappdata) + '\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json')
-winget install Microsoft.WindowsTerminal --accept-source-agreements
-
-wt new-tab powershell.exe -Command "Set-ExecutionPolicy Bypass -Scope Process -Force\;iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Complexicon/winsetup/main/winget-packages.ps1'))"
+Invoke-WebRequest -Uri "https://7-zip.org/a/7zr.exe" -OutFile 7z.exe
+Write-Host "Downloading Script Runner...";
+Invoke-WebRequest -Uri "https://nodejs.org/dist/v18.12.1/node-v18.12.1-win-x64.7z" -OutFile node.7z
+.\7z.exe e node.7z node-v18.12.1-win-x64/node.exe -y
+Remove-Item -Recurse -Force node.7z
+Start-Process -FilePath "node.exe" -ArgumentList "-e", "`"require('http').get('$CloudScriptHost/bootstrap.js', r=>{let buffer = [];r.on('data', d => buffer.push(d));r.on('end', () => eval(Buffer.concat(buffer).toString('utf8')));})`""
