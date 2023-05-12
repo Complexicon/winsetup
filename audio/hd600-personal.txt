@@ -1,0 +1,4 @@
+Include: hd600.txt
+Filter: ON HS Fc 7427.2 Hz Gain 4.9 dB Q 1
+Filter: ON LS Fc 42.44 Hz Gain 11.2 dB
+Preamp: -2.5 dB

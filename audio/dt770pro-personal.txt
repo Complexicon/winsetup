@@ -1,0 +1,3 @@
+Include: dt770pro.txt
+Filter: ON HS Fc 7427.2 Hz Gain 4.9 dB Q 1
+Filter: ON LS Fc 69.35 Hz Gain 12.4 dB
