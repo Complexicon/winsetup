@@ -37,13 +37,14 @@ Expand-Archive ".\XamlLib.zip" -DestinationPath ".\XamlUnzipped"
 Add-AppxPackage ".\XamlUnzipped\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx"
 
 Write-Host "Downloading and Installing Winget...";
-#Invoke-WebRequest -Uri "https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/7bcb1a0ab33340daa57fa5b81faec616_License1.xml" -OutFile License.xml
+Invoke-WebRequest -Uri "https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/7bcb1a0ab33340daa57fa5b81faec616_License1.xml" -OutFile License.xml
 Invoke-WebRequest -Uri "https://aka.ms/getwinget" -OutFile winget.msixbundle
 
 Add-AppxPackage winget.msixbundle
+Add-AppxProvisionedPackage -Online -PackagePath ".\winget.msixbundle" -LicensePath ".\License.xml" # enable license
 
-TAKEOWN /F "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe" /R /A /D J # todo internationalize
-ICACLS "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe" /grant Administratoren:F /T # todo internationalize
+#TAKEOWN /F "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe" /R /A /D J # todo internationalize
+#ICACLS "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe" /grant Administratoren:F /T # todo internationalize
 
 #fixup path
 #$ResolveWingetPath = Resolve-Path "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_*_x64__8wekyb3d8bbwe"
