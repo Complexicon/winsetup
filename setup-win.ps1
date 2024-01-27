@@ -60,6 +60,8 @@ Remove-Item -Recurse -Force $SetupDir
 Update-EnvironmentVariables
 
 ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Complexicon/winsetup/main/winget-settings.json')) | Set-Content (($env:localappdata) + '\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json')
-winget install Microsoft.WindowsTerminal --accept-source-agreements
 
-wt new-tab powershell.exe -Command "Set-ExecutionPolicy Bypass -Scope Process -Force\;iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Complexicon/winsetup/main/winget-packages.ps1'))"
+winget install Microsoft.WindowsTerminal --accept-source-agreements
+# commented out. newer builds of windows terminal break with older windows releases e.g. ltsc 2021
+#wt new-tab powershell.exe -Command "Set-ExecutionPolicy Bypass -Scope Process -Force\;iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Complexicon/winsetup/main/winget-packages.ps1'))"
+iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Complexicon/winsetup/main/winget-packages.ps1')
