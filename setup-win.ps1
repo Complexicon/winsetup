@@ -42,8 +42,8 @@ Invoke-WebRequest -Uri "https://aka.ms/getwinget" -OutFile winget.msixbundle
 
 Add-AppxPackage winget.msixbundle
 
-#TAKEOWN /F "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe" /R /A /D Y
-#ICACLS "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe" /grant Administrators:F /T
+TAKEOWN /F "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe" /R /A /D J # todo internationalize
+ICACLS "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe" /grant Administratoren:F /T # todo internationalize
 
 #fixup path
 #$ResolveWingetPath = Resolve-Path "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_*_x64__8wekyb3d8bbwe"
