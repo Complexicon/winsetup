@@ -64,4 +64,4 @@ Update-EnvironmentVariables
 winget install Microsoft.WindowsTerminal --accept-source-agreements
 # commented out. newer builds of windows terminal break with older windows releases e.g. ltsc 2021
 #wt new-tab powershell.exe -Command "Set-ExecutionPolicy Bypass -Scope Process -Force\;iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Complexicon/winsetup/main/winget-packages.ps1'))"
-iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Complexicon/winsetup/main/winget-packages.ps1')
+iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Complexicon/winsetup/main/winget-packages.ps1'))
