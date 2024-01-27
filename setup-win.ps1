@@ -27,20 +27,30 @@ cd $SetupDir
 
 $ProgressPreference = 'SilentlyContinue'
 
-Write-Host "Downloading VC++14...";
-Invoke-WebRequest -Uri "https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx" -OutFile VCLibs.appx
+Write-Host "Downloading and Installing VC++14...";
+#Invoke-WebRequest -Uri "https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx" -OutFile VCLibs.appx
+Add-AppxPackage "https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx"
 
-Write-Host "Downloading Microsoft XAML UI 2.7...";
+Write-Host "Downloading and Installing Microsoft XAML UI 2.7...";
 Invoke-WebRequest -Uri "https://www.nuget.org/api/v2/package/Microsoft.UI.Xaml/2.7" -OutFile XamlLib.zip
+Expand-Archive ".\XamlLib.zip" -DestinationPath ".\XamlUnzipped"
+Add-AppxPackage ".\XamlUnzipped\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx"
 
-Write-Host "Downloading Winget...";
-Invoke-WebRequest -Uri "https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/7bcb1a0ab33340daa57fa5b81faec616_License1.xml" -OutFile License.xml
+Write-Host "Downloading and Installing Winget...";
+#Invoke-WebRequest -Uri "https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/7bcb1a0ab33340daa57fa5b81faec616_License1.xml" -OutFile License.xml
 Invoke-WebRequest -Uri "https://aka.ms/getwinget" -OutFile winget.msixbundle
 
-Expand-Archive ".\XamlLib.zip" -DestinationPath ".\XamlUnzipped"
+Add-AppxPackage winget.msixbundle
 
-Write-Host "Installing Winget...";
-Add-AppxProvisionedPackage -Online -PackagePath ".\winget.msixbundle" -LicensePath ".\License.xml" -DependencyPackagePath ".\VCLibs.appx",".\XamlUnzipped\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx"
+TAKEOWN /F "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe" /R /A /D Y
+ICACLS "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_1.19.10173.0_x64__8wekyb3d8bbwe" /grant Administrators:F /T
+
+#fixup path
+$ResolveWingetPath = Resolve-Path "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_*_x64__8wekyb3d8bbwe"
+    if ($ResolveWingetPath){
+           $WingetPath = $ResolveWingetPath[-1].Path
+    }
+$ENV:PATH += ";$WingetPath"
 
 cd ..
 
