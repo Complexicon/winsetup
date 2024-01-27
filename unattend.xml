@@ -1,37 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<unattend xmlns="urn:schemas-microsoft-com:unattend" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
-  <settings pass="offlineServicing" />
-  <settings pass="windowsPE" />
-  <settings pass="generalize" />
-  <settings pass="specialize" />
-  <settings pass="auditSystem" />
-  <settings pass="auditUser" />
-  <settings pass="oobeSystem">
-    <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
-      <InputLocale>0407:00000407</InputLocale>
-      <SystemLocale>de-DE</SystemLocale>
-      <UILanguage>de-DE</UILanguage>
-      <UserLocale>de-DE</UserLocale>
-    </component>
-    <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
-      <UserAccounts>
-        <LocalAccounts>
-          <LocalAccount wcm:action="add">
-            <Name>Terminal</Name>
-            <Group>Administrators</Group>
-          </LocalAccount>
-        </LocalAccounts>
-      </UserAccounts>
-		<OOBE>
-			<HideEULAPage>true</HideEULAPage>
-			<ProtectYourPC>3</ProtectYourPC>
-			<HideLocalAccountScreen>true</HideLocalAccountScreen>
-			<HideOnlineAccountScreens>true</HideOnlineAccountScreens>
-			<HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
-			<SkipUserOOBE>true</SkipUserOOBE>
-			<SkipMachineOOBE>true</SkipMachineOOBE>
-			<HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
-		</OOBE>
-    </component>
-  </settings>
+<unattend
+	xmlns="urn:schemas-microsoft-com:unattend"
+	xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
+	<settings pass="offlineServicing" />
+	<settings pass="windowsPE" />
+	<settings pass="generalize" />
+	<settings pass="specialize" />
+	<settings pass="auditSystem" />
+	<settings pass="auditUser" />
+	<settings pass="oobeSystem">
+		<component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+			<InputLocale>0407:00000407</InputLocale>
+			<SystemLocale>de-DE</SystemLocale>
+			<UILanguage>de-DE</UILanguage>
+			<UserLocale>de-DE</UserLocale>
+		</component>
+		<component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+			<UserAccounts>
+				<LocalAccounts>
+					<LocalAccount wcm:action="add">
+						<Name>Terminal</Name>
+						<Group>Administrators</Group>
+					</LocalAccount>
+				</LocalAccounts>
+			</UserAccounts>
+			<OOBE>
+				<HideEULAPage>true</HideEULAPage>
+				<ProtectYourPC>3</ProtectYourPC>
+				<HideLocalAccountScreen>true</HideLocalAccountScreen>
+				<HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+				<HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+				<SkipUserOOBE>true</SkipUserOOBE>
+				<SkipMachineOOBE>true</SkipMachineOOBE>
+				<HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+			</OOBE>
+			<FirstLogonCommands>
+				<SynchronousCommand wcm:action="add">
+					<CommandLine>powershell -Command "Set-Content -Path (($env:userprofile) + '\Desktop\install-packages.ps1') -Value \"iex ((New-Object System.Net.WebClient).DownloadString('https://short.cmplx.dev/winstall.ps1'))\" -Force"</CommandLine>
+					<Description>create quick install link</Description>
+					<Order>1</Order>
+				</SynchronousCommand>
+			</FirstLogonCommands>
+		</component>
+	</settings>
 </unattend>
