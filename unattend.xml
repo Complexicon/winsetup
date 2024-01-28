@@ -36,7 +36,7 @@
 			</OOBE>
 			<FirstLogonCommands>
 				<SynchronousCommand wcm:action="add">
-					<CommandLine>powershell -Command "Set-Content -Path (($env:userprofile) + '\Desktop\install-packages.ps1') -Value \"iex ((New-Object System.Net.WebClient).DownloadString('https://short.cmplx.dev/winstall.ps1'))\" -Force"</CommandLine>
+					<CommandLine>powershell -Command "Set-Content -Path (($env:userprofile) + '\Desktop\install-packages.ps1') -Value \"Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://short.cmplx.dev/winstall.ps1'))\" -Force"</CommandLine>
 					<Description>create quick install link</Description>
 					<Order>1</Order>
 				</SynchronousCommand>
