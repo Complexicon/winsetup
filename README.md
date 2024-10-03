@@ -4,7 +4,7 @@ my custom windows 10 setup script
 run:
 
 ```
-powershell -c "Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://short.cmplx.dev/winstall.ps1'))"
+powershell -c "irm short.cmplx.dev/winstall.ps1 | iex"
 ```
 
 # dism
